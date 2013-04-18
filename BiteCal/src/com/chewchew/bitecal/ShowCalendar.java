@@ -6,6 +6,8 @@ import java.util.Calendar;
 import java.util.Date;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
@@ -16,6 +18,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.caldroid.CaldroidListener;
 import com.caldroid.CaldroidFragment;
 import com.caldroid.CaldroidListener;
 
@@ -33,12 +36,21 @@ public class ShowCalendar extends FragmentActivity {
 //		final CaldroidSampleCustomFragment caldroidFragment = new CaldroidSampleCustomFragment();
 		
 		// Setup arguments
+		CaldroidListener listener = new CaldroidListener()
+		{
+			@Override
+			public void onSelectDate(Date date, View view)
+			{
+				showNote();
+			}
+		};
 		Bundle args = new Bundle();
 		Calendar cal = Calendar.getInstance();
 		args.putInt("month", cal.get(Calendar.MONTH) + 1);
 		args.putInt("year", cal.get(Calendar.YEAR));
 		args.putBoolean("enableSwipe", true);
 		args.putBoolean("fitAllMonths", false);
+		caldroidFragment.setCaldroidListener(listener);
 		
 		// Comment this to customize startDayOfWeek
 //		args.putInt("startDayOfWeek", 6); // Saturday
@@ -54,6 +66,24 @@ public class ShowCalendar extends FragmentActivity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.show_calendar, menu);
 		return true;
+	}
+	
+	public void showNote()
+	{
+		final Dialog d = new Dialog(this);
+		d.setContentView(R.layout.activity_note);
+		d.setTitle("Note");
+		d.setCancelable(true);
+		Button b = (Button)d.findViewById(R.id.button1);
+		d.show();
+		b.setOnClickListener(new OnClickListener()
+		{
+			@Override
+			public void onClick(View v)
+			{
+				d.dismiss();
+			}
+		});
 	}
 
 }

@@ -8,5 +8,7 @@
     <string name="about_button_text">About</string>
     <string name="setting_button_text">Settings</string>
     <string name="title_activity_show_calendar">ShowCalendar</string>
+    <string name="title_activity_note">NoteActivity</string>
+    <string name="button_send">Send</string>
 
 </resources>
