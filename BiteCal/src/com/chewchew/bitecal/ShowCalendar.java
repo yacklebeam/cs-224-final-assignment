@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import org.joda.time.DateTime;
+
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
@@ -15,14 +17,18 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.caldroid.CaldroidListener;
 import com.caldroid.CaldroidFragment;
 import com.caldroid.CaldroidListener;
+import com.caldroid.CalendarHelper;
 
 public class ShowCalendar extends FragmentActivity {
+	
+	public final String[][] NoteArray = new String[12][31];
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +47,7 @@ public class ShowCalendar extends FragmentActivity {
 			@Override
 			public void onSelectDate(Date date, View view)
 			{
-				showNote();
+				showNote(CalendarHelper.convertDateToDateTime(date));
 			}
 		};
 		Bundle args = new Bundle();
@@ -68,7 +74,7 @@ public class ShowCalendar extends FragmentActivity {
 		return true;
 	}
 	
-	public void showNote()
+	public void showNote(final DateTime date)
 	{
 		final Dialog d = new Dialog(this);
 		d.setContentView(R.layout.activity_note);
@@ -81,6 +87,9 @@ public class ShowCalendar extends FragmentActivity {
 			@Override
 			public void onClick(View v)
 			{
+				EditText editor = (EditText)d.findViewById(R.id.editText2);
+				String text = editor.getText().toString();
+				NoteArray[date.getMonthOfYear()][date.getDayOfMonth()] = text;
 				d.dismiss();
 			}
 		});
