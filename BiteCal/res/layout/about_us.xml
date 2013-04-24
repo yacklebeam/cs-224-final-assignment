@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+	    android:textSize = "15sp"
+        android:text="------Created by the Choo-Choo Trains©-----"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+	    android:id="@+id/textView2"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:gravity="center"
+	    android:textSize = "10sp"
+	    android:text="
+Cyril 'Scrub-tier Leader' Van Dyke
+Jacob 'The Rock' Troxel
+DJ 'That's my Blue' Kaai
+Lucas 'The Art Department' Orlita
+Patrick 'Parse Master Flex' Anderson
+Ryan 'OKHERE&apos;STHEPLAN' Brown
+2013"
+	    android:textAppearance="?android:attr/textAppearanceSmall" />
+    
+</LinearLayout>
