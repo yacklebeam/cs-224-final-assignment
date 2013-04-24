@@ -1,7 +1,0 @@
-# cache for current jar dependecy. DO NOT EDIT.
-# format is <lastModified> <length> <SHA-1> <path>
-# Encoding is UTF-8
-1366686316516 570478 8f79e353ef77da6710e1f10d34fc3698eaaacbca C:\Users\DJ\git\cs-224-final-assignment\BiteCal\libs\joda-time-2.1.jar
-1366686317998 570478 8f79e353ef77da6710e1f10d34fc3698eaaacbca C:\Users\DJ\git\cs-224-final-assignment\Caldroid\libs\joda-time-2.1.jar
-1366686316173 385677 b9c504522d97f64025c387493d3989e52bc617bd C:\Users\DJ\git\cs-224-final-assignment\BiteCal\libs\android-support-v4.jar
-1366686316618 385677 b9c504522d97f64025c387493d3989e52bc617bd C:\Users\DJ\git\cs-224-final-assignment\Caldroid\libs\android-support-v4.jar
