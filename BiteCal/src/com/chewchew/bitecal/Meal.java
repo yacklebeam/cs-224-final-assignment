@@ -33,13 +33,17 @@ public class Meal
         return foods.get(index).info();
     }
     
+    public String returnFoodNameAndServings(int index){
+    	return (foods.get(index).getFoodName() + ";" + foods.get(index).getServings());
+    }
+    
     //Returns the .info of all foods in the meal.
     public String returnFoods()
     {
         String totalFoods = "";
         for(int i = 0; i < foods.size(); i++)
         {
-            totalFoods += this.returnFood(i) + "\n";
+            totalFoods += this.returnFoodNameAndServings(i) + ";";
         }
         return totalFoods;
     }
@@ -62,7 +66,7 @@ public class Meal
         int tCal = 0;
         for(int i = 0; i < foods.size(); i++)
         {
-            tCal += foods.get(i).getFoodCalories(foods.get(i).getCalOneServing(), foods.get(i).getServings());
+            tCal += foods.get(i).getFoodCalories();
         }
         return tCal;
     }

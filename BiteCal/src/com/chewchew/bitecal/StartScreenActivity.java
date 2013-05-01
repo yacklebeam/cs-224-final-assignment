@@ -28,7 +28,8 @@ public class StartScreenActivity extends Activity {
 
 	public void startClick(View v)
 	{
-		Intent i = new Intent(this, ShowCalendar.class);
+		//Intent i = new Intent(this, ShowCalendar.class);
+		Intent i = new Intent(this, TestDatabaseActivity.class);
 		startActivity(i); 
 	}
 	

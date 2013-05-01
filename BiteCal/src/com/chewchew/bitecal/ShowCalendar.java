@@ -1,5 +1,6 @@
 package com.chewchew.bitecal;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -27,8 +28,8 @@ import com.caldroid.CaldroidListener;
 import com.caldroid.CalendarHelper;
 
 public class ShowCalendar extends FragmentActivity {
-	
-	public final String[][] NoteArray = new String[12][31];
+
+	public static DateTime dateTime;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +48,9 @@ public class ShowCalendar extends FragmentActivity {
 			@Override
 			public void onSelectDate(Date date, View view)
 			{
-				showNote(CalendarHelper.convertDateToDateTime(date));
+				dateTime = CalendarHelper.convertDateToDateTime(date);
+				AddOrViewDialog avd = new AddOrViewDialog();
+				avd.show(getSupportFragmentManager(), "addview");
 			}
 		};
 		Bundle args = new Bundle();
@@ -74,7 +77,7 @@ public class ShowCalendar extends FragmentActivity {
 		return true;
 	}
 	
-	public void showNote(final DateTime date)
+	/*public void showNote(final DateTime date)
 	{
 		final Dialog d = new Dialog(this);
 		d.setContentView(R.layout.activity_note);
@@ -94,5 +97,9 @@ public class ShowCalendar extends FragmentActivity {
 			}
 		});
 	}
+	
+	public DateTime getDateTime(){
+		return dateTime;
+	}*/
 
 }
