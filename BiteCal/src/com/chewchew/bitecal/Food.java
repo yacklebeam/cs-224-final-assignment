@@ -4,7 +4,7 @@ public class Food
 {
     private String foodName;
     private double  servings;
-    private int    calOneServing;
+    private double    calOneServing;
     
     public Food()
     {
@@ -13,7 +13,7 @@ public class Food
         calOneServing = -1; 
     }
     
-    public Food(String name, double serving, int cal)
+    public Food(String name, double serving, double cal)
     {
         foodName = name;
         servings = serving;
@@ -32,7 +32,7 @@ public class Food
 
     public int getCalOneServing() 
     {
-        return calOneServing;
+        return (int) (calOneServing*1);
     }
 
     public void setFoodName(String foodName)
@@ -51,9 +51,9 @@ public class Food
     }
     
     //Returns the total calories of the entered food.
-    public int getFoodCalories(int calOneServing, double servings)
+    public int getFoodCalories(/*int calOneServing, double servings*/)
     {
-        int foodCalories = (int) (calOneServing * servings);
+        int foodCalories = (int) (this.calOneServing * this.servings);
         return foodCalories;
     }
     
@@ -63,7 +63,7 @@ public class Food
         String info = "Food Name: " + foodName + 
                 "\nServings: " + servings + 
                 "\nCalories of 1 Serving: " + calOneServing + 
-                "\nTotal Calories of Food: " + this.getFoodCalories(calOneServing, servings);
+                "\nTotal Calories of Food: " + this.getFoodCalories(/*calOneServing, servings*/);
         return info;
     }
  
@@ -75,7 +75,7 @@ public class Food
         {
             cutServings = cutServings.substring(0, cutServings.indexOf('.') + 3);
         }
-        String info = "" + foodName + "   " + cutServings + "   " + this.getFoodCalories(calOneServing, servings);
+        String info = "" + foodName + "   " + cutServings + "   " + this.getFoodCalories(/*calOneServing, servings*/);
         return info;
     }
     
