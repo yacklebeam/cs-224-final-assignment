@@ -17,7 +17,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHandler extends SQLiteOpenHelper {
 
 	private static String DB_PATH = "/data/data/com.chewchew.bitecal/databases/";
-	private static String DB_NAME = "bitecal.db";
+	private static String DB_VERSION = "01";
+	private static String DB_NAME = "bitecal" + DB_VERSION +  ".db";
     private SQLiteDatabase db; 
     private final Context local_context;
 	
@@ -40,7 +41,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     	if(!db_exists){
     		System.out.println("Creating the DB");
     	   	this.getReadableDatabase();
- 
         	try {
         		System.out.println("Attemping to copy the DB");
      			copyDataBase();
@@ -94,15 +94,21 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     	SQLiteDatabase db = this.getReadableDatabase();
     	Cursor c = db.rawQuery("SELECT name,cal FROM bitecal WHERE name LIKE ?", new String[] {"%" + search_words + "%"});
     	
+    	int count = 1;
     	if (c.moveToFirst()) {
+    		
     		System.out.println(c.getString(0) + ">>" + c.getString(1));
     		result_array.add(new Food(c.getString(0), 1.0, Double.parseDouble(c.getString(1))));
 		    while (c.moveToNext()) {
+		    	count ++;
 		    	System.out.println(c.getString(0) + ">>" + c.getString(1));
+		    	System.out.println("COUNT:::::: " + count);
+
 		    	result_array.add(new Food(c.getString(0), 1.0, Double.parseDouble(c.getString(1))));
 		        //c.moveToNext();
 		    }
 		}
+    	System.out.println("COUNT:::::: " + count);
     	
     	return result_array;
     }
