@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFDC"    
     android:orientation="vertical" >
 
     <TextView
@@ -23,9 +24,9 @@
 Cyril 'Scrub-tier Leader' Van Dyke
 Jacob 'The Rock' Troxel
 DJ 'That's my Blue' Kaai
-Lucas 'The Art Department' Orlita
+Lucas 'I Play With Colors' Orlita
 Patrick 'Parse Master Flex' Anderson
-Ryan 'OKHERE&apos;STHEPLAN' Brown
+Ryan 'OKHERESTHEPLAN' Brown
 2013"
 	    android:textAppearance="?android:attr/textAppearanceSmall" />
     
