@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -84,32 +85,50 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     	copyDataBase();
     }
     
+    public void insertRow (String name, float cal) {
+    	name = name.toUpperCase();
+    	
+    	SQLiteDatabase db = this.getWritableDatabase();
+    	ContentValues cv = new ContentValues();
+    	cv.put("name", name);
+    	cv.put("cal", cal);
+    	
+    	db.insert("bitecal", null, cv);
+    	db.close();
+    }
+    
     public ArrayList<Food> sendQuery (String search_words) {
     	search_words = search_words.toUpperCase();
+    	String[] split_search = search_words.split(" ");
     	
-    	System.out.println("Searching for " + search_words);
+    	String query = "SELECT name,cal FROM bitecal WHERE";
+    	for (String str : split_search) {
+    		query += " name LIKE ";
+    		
+    		str = "%" + str + "%";
+    		//System.out.println(str);
+    		query += "'" + str + "' AND";
+    	}
+    	query = query.substring(0,query.length()-4);
+    	System.out.println(query);
+    	
+    	//System.out.println("Searching for " + search_words);
     	
     	ArrayList<Food> result_array = new ArrayList<Food>();
     	
     	SQLiteDatabase db = this.getReadableDatabase();
-    	Cursor c = db.rawQuery("SELECT name,cal FROM bitecal WHERE name LIKE ?", new String[] {"%" + search_words + "%"});
+    	Cursor c = db.rawQuery(query, new String[] {});
     	
-    	int count = 1;
     	if (c.moveToFirst()) {
     		
     		System.out.println(c.getString(0) + ">>" + c.getString(1));
     		result_array.add(new Food(c.getString(0), 1.0, Double.parseDouble(c.getString(1))));
 		    while (c.moveToNext()) {
-		    	count ++;
-		    	System.out.println(c.getString(0) + ">>" + c.getString(1));
-		    	System.out.println("COUNT:::::: " + count);
-
 		    	result_array.add(new Food(c.getString(0), 1.0, Double.parseDouble(c.getString(1))));
 		        //c.moveToNext();
 		    }
 		}
-    	System.out.println("COUNT:::::: " + count);
-    	
+    	db.close();
     	return result_array;
     }
 

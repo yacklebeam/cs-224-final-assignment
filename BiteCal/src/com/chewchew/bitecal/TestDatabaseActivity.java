@@ -52,6 +52,15 @@ public class TestDatabaseActivity extends Activity {
 		}
 	}
 	
+	public void insertClicked (View v) {
+		EditText text_v = (EditText)findViewById(R.id.editText3);
+		EditText text_i = (EditText)findViewById(R.id.editText2);
+		String text = text_v.getText().toString();
+		float cal_t = Float.parseFloat(text_i.getText().toString());
+		
+		db_handler.insertRow(text, cal_t);
+	}
+	
 	/*public void clickedQuery (View v) {
 		try {
 			EditText text_v = (EditText)findViewById(R.id.editText1);
