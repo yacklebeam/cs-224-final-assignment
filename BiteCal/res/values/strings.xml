@@ -11,5 +11,6 @@
     <string name="title_activity_note">NoteActivity</string>
     <string name="button_send">Send</string>
     <string name="pick_meal">Select a meal</string>
+    <string name="title_activity_test_database">Test Database</string>
 
 </resources>
