@@ -2,9 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"     
-    android:background="#FFFFDC"   
-    >
+    android:background="#FFFFDC"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
 
     <TextView
         android:id="@+id/textView1"
@@ -12,25 +12,41 @@
         android:layout_height="wrap_content"
         android:textSize = "50sp"
         android:text="SETTINGS"
+        android:textColor="#000000"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <CheckBox
         android:id="@+id/checkBox1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="#000000"
         android:text="Delet sys34?" />
 
     <CheckBox
         android:id="@+id/checkBox2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="#000000"
         android:text="Delete bin files" />
     
 	<CheckBox
         android:id="@+id/checkBox2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="#000000"
         android:text="Do you lyk dis app? (Clik Yeas)" />
+
+	<View
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_weight="1" />
+
+	<Button
+        android:id="@+id/closeSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Close" />
+	
 
 
 </LinearLayout>

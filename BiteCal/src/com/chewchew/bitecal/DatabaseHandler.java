@@ -122,11 +122,21 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     	if (c.moveToFirst()) {
     		
     		System.out.println(c.getString(0) + ">>" + c.getString(1));
-    		result_array.add(new Food(c.getString(0), 1.0, Double.parseDouble(c.getString(1))));
-		    while (c.moveToNext()) {
-		    	result_array.add(new Food(c.getString(0), 1.0, Double.parseDouble(c.getString(1))));
-		        //c.moveToNext();
-		    }
+    		try {
+    			result_array.add(new Food(c.getString(0), 1.0, Double.parseDouble(c.getString(1))));
+    		} catch (NumberFormatException e) {
+    			result_array.add(new Food(c.getString(0), 1.0, (double) Integer.parseInt(c.getString(1))));
+    		} finally {
+    			while (c.moveToNext()) {
+    				try {
+    		    		System.out.println(c.getString(0) + ">>" + c.getString(1));
+    					result_array.add(new Food(c.getString(0), 1.0, Double.parseDouble(c.getString(1))));
+    					//c.moveToNext();
+    				} catch (NumberFormatException e) {
+    					result_array.add(new Food(c.getString(0), 1.0, (double) Integer.parseInt(c.getString(1))));
+    				}
+    			}
+    		}
 		}
     	db.close();
     	return result_array;

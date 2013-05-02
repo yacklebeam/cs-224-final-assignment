@@ -2,27 +2,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFDC"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:gravity="center_horizontal"
     android:screenOrientation="portrait"
-    android:orientation="vertical"
-    android:background="#FFFFDC"
     tools:context=".StartScreen" >
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="130dp"
+        android:layout_height="142dp"
+        android:src="@drawable/bitecal_logo" />
 
     <Button
         android:id="@+id/start_button"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:onClick="startClick"
-        android:text="@string/start_button_text" 
-        android:textSize="64sp"
-        android:textColor="#515151"
         android:background="#FFFFDC"
-        />
+        android:onClick="startClick"
+        android:text="@string/start_button_text"
+        android:textColor="#515151"
+        android:textSize="64sp" />
 
     <Button
         android:id="@+id/setting_button"
@@ -30,16 +35,18 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:background="#FFFFDC"
-        android:textColor="#515151"
-        android:text="@string/setting_button_text" />
+        android:onClick="settingClicked"
+        android:text="@string/setting_button_text"
+        android:textColor="#515151" />
 
-     <Button
-         android:id="@+id/about_button"
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:layout_marginTop="10dp"
-         android:background="#FFFFDC"
-         android:textColor="#515151"
-         android:text="@string/about_button_text" />
+    <Button
+        android:id="@+id/about_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="#FFFFDC"
+        android:onClick="aboutClicked"
+        android:text="@string/about_button_text"
+        android:textColor="#515151" />
 
 </LinearLayout>

@@ -12,5 +12,6 @@
     <string name="button_send">Send</string>
     <string name="pick_meal">Select a meal</string>
     <string name="title_activity_test_database">Test Database</string>
+    <string name="title_activity_add_food_to_database">Add Food</string>
 
 </resources>

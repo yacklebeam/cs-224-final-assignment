@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
+    android:background="#FFFFDC"
     android:orientation="vertical" >
 
     <TextView
@@ -10,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Results"
+        android:textColor="#000000"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <ScrollView
@@ -33,7 +35,8 @@
             android:id="@+id/button2"
             android:layout_width="160dp"
             android:layout_height="wrap_content"
-            android:text="Add This Food" />
+            android:onClick="closeResults"
+            android:text="Close" />
 
         <Button
             android:id="@+id/button1"

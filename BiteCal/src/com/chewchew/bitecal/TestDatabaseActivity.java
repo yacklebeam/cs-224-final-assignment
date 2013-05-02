@@ -14,6 +14,7 @@ import android.graphics.Color;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TableLayout;
@@ -73,19 +74,29 @@ public class TestDatabaseActivity extends Activity {
 		final Dialog result_dialog = new Dialog(this, android.R.style.Theme_NoTitleBar_Fullscreen);
 		result_dialog.setContentView(R.layout.resultscreen);
 		
+		if(foods.isEmpty()) {
+			foods.add(new Food("No Results", 0,0));
+		}
 		
 		TableLayout td = (TableLayout)result_dialog.findViewById(R.id.tableLayout_result);
 		for (Food food: foods) 
 		{
 			TextView t = new TextView(this);
+			//t.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+			TextView t2 = new TextView(this);
+			//t2.setWidth(0);
+			t2.setTextColor(Color.TRANSPARENT);
+			t2.setText(food.getCalOneServing()+"");
 			t.setText(food.getFoodName().subSequence(0,food.getFoodName().length()));
 			t.setTextColor(Color.BLACK);
 			t.setTextSize(15);
 	        t.setBackgroundColor(Color.WHITE); 
 	        t.setPadding(5, 0, 0, 0);
 	        TableRow tr = new TableRow(this);
-	        tr.setPadding(0, 1, 0, 1); 
-	        tr.setBackgroundColor(Color.BLACK);
+	        tr.setPadding(0, 1, 0, 1);
+	        tr.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+	        //t.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+	        //tr.setBackgroundColor(Color.BLACK);
 			tr.setClickable(true);
 			tr.setOnClickListener(new OnClickListener()
 			{
@@ -93,17 +104,22 @@ public class TestDatabaseActivity extends Activity {
 				{
 					TableRow t = (TableRow) v;
 				    TextView firstTextView = (TextView) t.getChildAt(0);
-					Toast.makeText(getApplicationContext(), firstTextView.getText(), Toast.LENGTH_SHORT).show();
+				    TextView second = (TextView) t.getChildAt(1);
+				    String name = (String)firstTextView.getText();
+				    int cals = Integer.parseInt((String)second.getText());
+				    showAddDialog(name,cals);
+					//Toast.makeText(getApplicationContext(), firstTextView.getText(), Toast.LENGTH_SHORT).show();
 				}
 			}
 			);
 			
 			tr.addView(t);
+			tr.addView(t2);
 			td.addView(tr);
 		}
 		
 		
-		Button begin_bt = (Button)result_dialog.findViewById(R.id.button1);
+		Button begin_bt = (Button)result_dialog.findViewById(R.id.button2);
 		result_dialog.show();
 		begin_bt.setOnClickListener(new OnClickListener() {
 			@Override
@@ -112,6 +128,28 @@ public class TestDatabaseActivity extends Activity {
 			}
 		});
 		
+	}
+	
+	private void showAddDialog(String name, int cals) {
+		final Dialog add_dialog = new Dialog(this, android.R.style.Theme_NoTitleBar_Fullscreen);
+		add_dialog.setContentView(R.layout.addfoodtomeal);
+		
+		TextView name_view = (TextView)add_dialog.findViewById(R.id.textView3);
+		name_view.setText("Name: " + name);
+		TextView cal_view = (TextView)add_dialog.findViewById(R.id.textView4);
+		cal_view.setText("Calories/Serving: " + cals);
+		
+		Button begin_bt = (Button)add_dialog.findViewById(R.id.button1);
+		add_dialog.show();
+		begin_bt.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick (View v) {
+				//add_dialog.dismiss();
+				//ADD a new food to the meal here.
+			}
+		});
+		
+		add_dialog.show();
 	}
 	
 	/*public void clickedQuery (View v) {
