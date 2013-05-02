@@ -10,9 +10,11 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
+import android.graphics.Color;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -68,7 +70,7 @@ public class TestDatabaseActivity extends Activity {
 	
 	public void createTable(ArrayList<Food> foods)
 	{
-		final Dialog result_dialog = new Dialog(this);
+		final Dialog result_dialog = new Dialog(this, android.R.style.Theme_NoTitleBar_Fullscreen);
 		result_dialog.setContentView(R.layout.resultscreen);
 		
 		
@@ -77,13 +79,20 @@ public class TestDatabaseActivity extends Activity {
 		{
 			TextView t = new TextView(this);
 			t.setText(food.getFoodName().subSequence(0,food.getFoodName().length()));
-			TableRow tr = new TableRow(this);
+			t.setTextColor(Color.BLACK);
+	        t.setBackgroundColor(Color.WHITE); 
+	        t.setPadding(5, 0, 0, 0);
+	        TableRow tr = new TableRow(this);
+	        tr.setPadding(0, 1, 0, 1); 
+	        tr.setBackgroundColor(Color.BLACK);
 			tr.setClickable(true);
 			tr.setOnClickListener(new OnClickListener()
 			{
 				public void onClick(View v)
 				{
-					
+					TableRow t = (TableRow) v;
+				    TextView firstTextView = (TextView) t.getChildAt(0);
+					Toast.makeText(getApplicationContext(), firstTextView.getText(), Toast.LENGTH_SHORT).show();
 				}
 			}
 			);
@@ -93,7 +102,14 @@ public class TestDatabaseActivity extends Activity {
 		}
 		
 		
+		Button begin_bt = (Button)result_dialog.findViewById(R.id.button1);
 		result_dialog.show();
+		begin_bt.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick (View v) {
+				result_dialog.dismiss();
+			}
+		});
 		
 	}
 	
