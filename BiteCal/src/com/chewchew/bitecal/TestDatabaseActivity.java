@@ -80,6 +80,7 @@ public class TestDatabaseActivity extends Activity {
 			TextView t = new TextView(this);
 			t.setText(food.getFoodName().subSequence(0,food.getFoodName().length()));
 			t.setTextColor(Color.BLACK);
+			t.setTextSize(15);
 	        t.setBackgroundColor(Color.WHITE); 
 	        t.setPadding(5, 0, 0, 0);
 	        TableRow tr = new TableRow(this);
