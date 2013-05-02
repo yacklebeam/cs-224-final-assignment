@@ -5,13 +5,17 @@ import java.util.ArrayList;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.Dialog;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.EditText;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,11 +49,12 @@ public class TestDatabaseActivity extends Activity {
 		String text = text_v.getText().toString();
 		
 		ArrayList<Food> result = db_handler.sendQuery(text);
-		Toast.makeText(this, "FOODS", Toast.LENGTH_SHORT).show();
+		createTable(result);
+		//Toast.makeText(this, "FOODS", Toast.LENGTH_SHORT).show();
 
-		for (Food food: result) {
-			Toast.makeText(this, food.getFoodName() + " : " + food.getFoodCalories(), Toast.LENGTH_SHORT).show();
-		}
+		//for (Food food: result) {
+			//Toast.makeText(this, food.getFoodName() + " : " + food.getFoodCalories(), Toast.LENGTH_SHORT).show();
+		//}
 	}
 	
 	public void insertClicked (View v) {
@@ -59,6 +64,37 @@ public class TestDatabaseActivity extends Activity {
 		float cal_t = Float.parseFloat(text_i.getText().toString());
 		
 		db_handler.insertRow(text, cal_t);
+	}
+	
+	public void createTable(ArrayList<Food> foods)
+	{
+		final Dialog result_dialog = new Dialog(this);
+		result_dialog.setContentView(R.layout.resultscreen);
+		
+		
+		TableLayout td = (TableLayout)result_dialog.findViewById(R.id.tableLayout_result);
+		for (Food food: foods) 
+		{
+			TextView t = new TextView(this);
+			t.setText(food.getFoodName().subSequence(0,food.getFoodName().length()));
+			TableRow tr = new TableRow(this);
+			tr.setClickable(true);
+			tr.setOnClickListener(new OnClickListener()
+			{
+				public void onClick(View v)
+				{
+					
+				}
+			}
+			);
+			
+			tr.addView(t);
+			td.addView(tr);
+		}
+		
+		
+		result_dialog.show();
+		
 	}
 	
 	/*public void clickedQuery (View v) {
