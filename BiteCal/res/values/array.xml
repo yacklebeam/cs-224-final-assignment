@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="meal_select_array">
+        <item >Breakfast</item>
+        <item >Lunch</item>
+        <item >Dinner</item>
+        <item >Other</item>
+    </string-array>
+    <string-array name="add_or_view_array">
+        <item >View</item>
+        <item >Add</item>
+    </string-array>
+    
+</resources>
